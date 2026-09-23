@@ -3,7 +3,7 @@ import Rules from "./services/Rules"
 function App() {
   return (
     <>
-        <Rules/>
+      <Rules />
     </>
   )
 }

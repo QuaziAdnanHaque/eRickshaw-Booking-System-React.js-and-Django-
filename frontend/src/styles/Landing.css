@@ -17,11 +17,6 @@ body,
     overflow-x: hidden;
 }
 
-
-/* =========================
-   NAVBAR
-========================= */
-
 .navbar {
     width: 100%;
     height: 76px;
@@ -68,11 +63,6 @@ body,
     color: #07191E;
     box-shadow: 0 6px 18px rgba(2, 245, 161, 0.2);
 }
-
-
-/* =========================
-   HERO
-========================= */
 
 .hero-section {
     min-height: calc(100vh - 76px);
@@ -163,11 +153,6 @@ body,
     transform: translateY(-2px);
 }
 
-
-/* =========================
-   HERO VISUAL
-========================= */
-
 .hero-visual {
     position: relative;
     width: 45%;
@@ -195,11 +180,6 @@ body,
     font-size: 145px;
     filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.35));
 }
-
-
-/* =========================
-   LOCATION CARDS
-========================= */
 
 .location-card {
     position: absolute;
@@ -254,11 +234,6 @@ body,
 .destination-dot {
     background-color: #ffffff;
 }
-
-
-/* =========================
-   BENEFITS
-========================= */
 
 .benefits-section {
     padding: 100px 7%;
@@ -332,11 +307,6 @@ body,
     line-height: 1.7;
 }
 
-
-/* =========================
-   CTA
-========================= */
-
 .cta-section {
     padding: 100px 7%;
     text-align: center;
@@ -383,11 +353,6 @@ body,
     box-shadow: 0 10px 25px rgba(2, 245, 161, 0.2);
 }
 
-
-/* =========================
-   FOOTER
-========================= */
-
 .footer {
     padding: 35px 7%;
     text-align: center;
@@ -412,143 +377,104 @@ body,
     font-size: 11px;
 }
 
-
-/* =========================
-   TABLET
-========================= */
-
 @media (max-width: 900px) {
-
     .hero-section {
         padding-top: 55px;
         padding-bottom: 70px;
         flex-direction: column;
         text-align: center;
     }
-
     .hero-content {
         width: 100%;
     }
-
     .hero-description {
         margin-left: auto;
         margin-right: auto;
     }
-
     .hero-buttons {
         justify-content: center;
     }
-
     .hero-visual {
         width: 100%;
         min-height: 400px;
     }
-
     .benefits-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
-
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 500px) {
-
     .navbar {
         height: 68px;
         padding: 0 20px;
     }
-
     .logo {
         font-size: 22px;
     }
-
     .nav-links {
         gap: 14px;
     }
-
     .nav-links a {
         font-size: 12px;
     }
-
     .nav-links .nav-register {
         padding: 8px 13px;
     }
-
     .hero-section {
         padding: 50px 20px;
     }
-
     .hero-content h1 {
         font-size: 46px;
         letter-spacing: -1.5px;
     }
-
     .hero-description {
         font-size: 15px;
     }
-
     .hero-buttons {
         flex-direction: column;
         width: 100%;
     }
-
     .primary-btn,
     .secondary-btn {
         width: 100%;
     }
-
     .hero-visual {
         min-height: 340px;
     }
-
     .ride-circle {
         width: 260px;
         height: 260px;
     }
-
     .rickshaw {
         font-size: 105px;
     }
-
     .location-card {
         min-width: 160px;
         padding: 10px 12px;
     }
-
     .pickup-card {
         top: 15px;
         left: 0;
     }
-
     .destination-card {
         right: 0;
         bottom: 20px;
     }
-
     .benefits-section {
         padding: 70px 20px;
     }
-
     .section-heading h2 {
         font-size: 28px;
     }
-
     .benefits-grid {
         grid-template-columns: 1fr;
     }
-
     .cta-section {
         padding: 70px 20px;
     }
-
     .cta-content h2 {
         font-size: 32px;
     }
-
     .footer {
         padding: 30px 20px;
     }

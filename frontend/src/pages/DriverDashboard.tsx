@@ -11,7 +11,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "../styles/DriverDashboard.css";
 
-// Interface definitions
 interface RouteGeometry {
     type: string;
     coordinates: [number, number][];
@@ -68,14 +67,12 @@ const dropIcon = L.icon({
 const DriverDashboard = () => {
     const navigate = useNavigate();
 
-    // State management
     const [rides, setRides] = useState<Ride[]>([]);
     const [loading, setLoading] = useState(true);
     const [actionLoading, setActionLoading] = useState<number | null>(null);
     const [error, setError] = useState("");
     const [expandedRideId, setExpandedRideId] = useState<number | null>(null);
 
-    // Read driver user from localStorage
     const storedUser = localStorage.getItem("user");
     const user = storedUser ? JSON.parse(storedUser) : null;
     const driverName = user?.name || "Driver";
@@ -83,7 +80,6 @@ const DriverDashboard = () => {
 
     const getToken = () => localStorage.getItem("access_token");
 
-    // Load available & assigned rides
     const loadRides = async (silent = false) => {
         try {
             if (!silent) setError("");
@@ -111,7 +107,6 @@ const DriverDashboard = () => {
         }
     };
 
-    // Initial fetch + Live SPA Polling every 3.5 seconds
     useEffect(() => {
         loadRides(false);
         const interval = setInterval(() => {
@@ -120,7 +115,6 @@ const DriverDashboard = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // Accept Ride
     const acceptRide = async (id: number) => {
         try {
             setError("");
@@ -147,7 +141,6 @@ const DriverDashboard = () => {
         }
     };
 
-    // Complete Ride
     const completeRide = async (id: number) => {
         try {
             setError("");
@@ -174,7 +167,6 @@ const DriverDashboard = () => {
         }
     };
 
-    // Logout
     const logout = () => {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
@@ -183,13 +175,11 @@ const DriverDashboard = () => {
         navigate("/login");
     };
 
-    // Helper: convert coordinates to [lat, lng]
     const getRoutePositions = (ride: Ride): [number, number][] => {
         if (!ride.route_geometry?.coordinates?.length) return [];
         return ride.route_geometry.coordinates.map(([lng, lat]) => [lat, lng]);
     };
 
-    // Filter rides into Active Trips vs New Available Requests
     const activeTrips = rides.filter(
         (r) => r.status === "accepted" && Number(r.driver) === driverId
     );
@@ -216,7 +206,7 @@ const DriverDashboard = () => {
 
     return (
         <div className="dashboard-container">
-            {/* Navigation Bar */}
+
             <nav className="dashboard-nav">
                 <div className="nav-brand">
                     <span className="brand-icon">⚡</span>
@@ -230,10 +220,9 @@ const DriverDashboard = () => {
             </nav>
 
             <main className="dashboard-content">
-                {/* Error Banner */}
+
                 {error && <div className="dash-alert error">{error}</div>}
 
-                {/* Driver Stats & Overview Header */}
                 <section className="driver-overview">
                     <div className="overview-text">
                         <h1>Driver Dashboard</h1>
@@ -261,7 +250,6 @@ const DriverDashboard = () => {
                     </div>
                 </section>
 
-                {/* Section 1: Active Trips (Trips accepted by this driver) */}
                 {activeTrips.length > 0 && (
                     <section className="driver-rides-section active-trips-section">
                         <div className="section-header">
@@ -311,7 +299,6 @@ const DriverDashboard = () => {
                                             <span><strong>Distance:</strong> {ride.distance} km</span>
                                         </div>
 
-                                        {/* Expandable Route Preview */}
                                         {routePositions.length > 0 && (
                                             <button
                                                 type="button"
@@ -322,7 +309,6 @@ const DriverDashboard = () => {
                                             </button>
                                         )}
 
-                                        {/* Route Polyline Map */}
                                         {isExpanded && routePositions.length > 0 && (
                                             <div className="ride-mini-map-wrap">
                                                 <MapContainer
@@ -341,7 +327,6 @@ const DriverDashboard = () => {
                                             </div>
                                         )}
 
-                                        {/* Action buttons: Complete Trip */}
                                         <div className="driver-actions">
                                             <div className="action-row">
                                                 <button
@@ -361,13 +346,10 @@ const DriverDashboard = () => {
                     </section>
                 )}
 
-                {/* Section 2: Available Ride Requests */}
                 <section className="driver-rides-section">
                     <div className="section-header">
                         <h2>Available Ride Requests</h2>
-                        <span className="online-indicator">
-                            <span className="pulse-dot"></span> Live Feed (Auto-Updating)
-                        </span>
+                        
                     </div>
 
                     {activeTrips.length > 0 && (
@@ -423,7 +405,6 @@ const DriverDashboard = () => {
                                             <span><strong>Distance:</strong> {ride.distance} km</span>
                                         </div>
 
-                                        {/* Expandable Route Preview */}
                                         {routePositions.length > 0 && (
                                             <button
                                                 type="button"
@@ -434,7 +415,6 @@ const DriverDashboard = () => {
                                             </button>
                                         )}
 
-                                        {/* Route Polyline Map */}
                                         {isExpanded && routePositions.length > 0 && (
                                             <div className="ride-mini-map-wrap">
                                                 <MapContainer
@@ -453,7 +433,6 @@ const DriverDashboard = () => {
                                             </div>
                                         )}
 
-                                        {/* Action: Accept Ride (Disabled if already having an active trip) */}
                                         <div className="driver-actions">
                                             {activeTrips.length > 0 ? (
                                                 <button

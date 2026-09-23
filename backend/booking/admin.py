@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from .models import Ride
 
 @admin.register(Ride)
@@ -26,4 +25,3 @@ class RideAdmin(admin.ModelAdmin):
         "pickup",
         "drop"
     ]
-    # customertwo@example.comtestpassword23

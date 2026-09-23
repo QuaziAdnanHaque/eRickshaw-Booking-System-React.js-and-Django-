@@ -1,16 +1,10 @@
 from rest_framework import serializers
-
 from .models import Ride
 
 class RideSerializer(serializers.ModelSerializer):
-    customer_name = serializers.CharField(
-        source="customer.name",
-        read_only=True
-    )
-    driver_name = serializers.CharField(
-        source="driver.name",
-        read_only=True
-    )
+    customer_name = serializers.CharField(source="customer.name", read_only=True)
+    driver_name = serializers.CharField(source="driver.name", read_only=True)
+
     class Meta:
         model = Ride
         fields = [
